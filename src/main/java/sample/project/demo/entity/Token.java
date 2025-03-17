@@ -5,6 +5,7 @@ import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -15,12 +16,14 @@ import java.time.LocalDate;
 @Builder
 public class Token {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment primary key
     private Integer id;
-
+    @Column(unique = true)
     private String token;
-    private LocalDate createdAt;
-    private LocalDate expiredAt;
-    private LocalDate validatedAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime expiredAt;
+    private LocalDateTime validatedAt;
     @ManyToOne
     @JoinColumn(name="UserId",nullable = false)
     private User user;

@@ -18,7 +18,8 @@ import java.util.List;
 @Builder
 @EntityListeners(AuditingEntityListener.class)
 public class Role {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
 
